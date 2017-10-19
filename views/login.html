@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <a class="waves-effect waves-light btn-large">Login</a>
+    <a class="waves-effect waves-light btn-large" onclick="loginGoogle()"><i class="material-icons left">settings_system_daydream</i>Login</a>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-messaging.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyA-TEtL45EZDYWF28aNRfWzXXG6-yJaxlM",
+        authDomain: "testfire-miag5.firebaseapp.com",
+        databaseURL: "https://testfire-miag5.firebaseio.com",
+        projectId: "testfire-miag5",
+        storageBucket: "testfire-miag5.appspot.com",
+        messagingSenderId: "558360565772"
+    };
+    firebase.initializeApp(config);
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    function loginGoogle() {
+        firebase.auth().signInWithPopup(provider).then(function (result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+        }).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
+
+</script>
+
+</html>
