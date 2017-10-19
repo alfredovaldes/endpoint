@@ -17,7 +17,7 @@ var ruta = require('./routes/ruta');
 var trayecto = require('./routes/trayecto');
 var auth = require('./routes/auth');
 var hw = require('./routes/hw');
-
+var login =require('./routes/login');
 
 
 var app = express();
@@ -45,6 +45,7 @@ app.use('/ruta', ruta);
 app.use('/trayecto', trayecto);
 app.use('/auth', auth);
 app.use('/hw', hw);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
