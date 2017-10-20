@@ -47,6 +47,13 @@ html
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("photo").innerHTML = "<img src=\""+user.photoURL+"\">";
     // ...
+    var userData ={
+        uid: user.uid,
+        email:user.email,
+        displayName:user.displayName,
+        photo:user.photoURL
+      };
+      console.log(userData);
     }).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
