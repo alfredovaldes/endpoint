@@ -9,22 +9,36 @@ var con = mysql.createConnection({
 
 con.connect(function (err) {
     if (err) throw err;
-    console.log("Connected!");
+    console.log("Connected!");   
 });
 
 
-exports.getChofer = function (cb) {
+exports.getChofer = function (cb, userData) {
     let query = 'Select * from chofer'
-    con.query(query, function(err, results){
-        if(err) return cb(err, null);
+    con.query(query, function (err, results) {
+        if (err) return cb(err, null);
         return cb(null, results);
     })
 }
-
+exports.setUser = function (cb, userData) {
+    var sql = "INSERT INTO user (uid, email, displayName) VALUES ('" + userData.uid + "','" + userData.email + "','" + userData.displayName + "')";
+    con.query(sql, function (err, results) {
+        if (err) return cb(err, null);
+        return cb(null, results);
+    })
+}
 exports.getCamion = function (cb) {
     let query = 'Select * from camiones'
-    con.query(query, function(err, results){
-        if(err) return cb(err, null);
+    con.query(query, function (err, results) {
+        if (err) return cb(err, null);
         return cb(null, results);
     })
 }
+exports.getUser = function (resultado) {
+    con.query("SELECT * FROM user", function (err, result, fields) {
+        if (err) throw err;
+        //console.log(result);
+    });
+    return resultado; 
+}
+exports.conexion=con;

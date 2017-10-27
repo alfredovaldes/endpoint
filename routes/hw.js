@@ -13,5 +13,4 @@ module.exports = router;
 
 function getcamiones(){
 
-
 }

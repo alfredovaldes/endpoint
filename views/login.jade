@@ -42,7 +42,6 @@ html
     // Tomamos el Google Access Token. Con esto se accede a la API.
     var token = result.credential.accessToken;
     var user = result.user;
-    console.log(user);
     document.getElementById("user").innerHTML = user.displayName;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("photo").innerHTML = "<img src=\""+user.photoURL+"\">";
@@ -53,7 +52,10 @@ html
         displayName:user.displayName,
         photo:user.photoURL
       };
-      console.log(userData);
+       var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "http://localhost:3000/login", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(userData));
     }).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
