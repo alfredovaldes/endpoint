@@ -15,7 +15,6 @@ var comentario = require('./routes/comentario');
 var parada = require('./routes/parada');
 var ruta = require('./routes/ruta');
 var trayecto = require('./routes/trayecto');
-var auth = require('./routes/auth');
 var hw = require('./routes/hw');
 var login =require('./routes/login');
 
@@ -43,7 +42,6 @@ app.use('/comentario', comentario);
 app.use('/parada', parada);
 app.use('/ruta', ruta);
 app.use('/trayecto', trayecto);
-app.use('/auth', auth);
 app.use('/hw', hw);
 app.use('/login', login);
 
