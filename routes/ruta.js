@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
     var data = JSON.stringify(result);  // <====    
     res.send(data);
   });
-  con.release();
+  db.conexion.end();
 });
 
 router.get('/:id', function (req, res, next) {
@@ -22,7 +22,7 @@ router.get('/:id', function (req, res, next) {
     var data = JSON.stringify(result);  // <====    
     res.send(data);
   });
-  con.release();
+  db.conexion.end();
 });
 
 module.exports = router;

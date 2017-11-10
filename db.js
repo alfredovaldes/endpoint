@@ -19,7 +19,7 @@ exports.getChofer = function (cb, userData) {
         if (err) return cb(err, null);
         return cb(null, results);
     })
-    con.release();
+    con.end();
 }
 exports.setUser = function (cb, userData) {
     var sql = "INSERT INTO user (uid, email, displayName) VALUES ('" + userData.uid + "','" + userData.email + "','" + userData.displayName + "')";
@@ -27,7 +27,7 @@ exports.setUser = function (cb, userData) {
         if (err) return cb(err, null);
         return cb(null, results);
     })
-    con.release();
+    con.end();
 
 }
 exports.getCamion = function (cb) {
@@ -36,7 +36,7 @@ exports.getCamion = function (cb) {
         if (err) return cb(err, null);
         return cb(null, results);
     })
-    con.release();
+    con.end();
 }
 exports.getRuta = function (cb) {
     let query = 'Select * from ruta'
@@ -44,7 +44,7 @@ exports.getRuta = function (cb) {
         if (err) return cb(err, null);
         return cb(null, results);
     })
-    con.release();
+    con.end();
     
 }
 exports.getUser = function (resultado) {
@@ -53,7 +53,7 @@ exports.getUser = function (resultado) {
         //console.log(result);
     });
     return resultado;
-    con.release();
+    con.end();
     
 }
 exports.conexion = con;
