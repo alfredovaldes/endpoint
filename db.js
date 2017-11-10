@@ -35,7 +35,13 @@ exports.getCamion = function (id, cb) {
         return cb(null, results);
     })
 }
-
+exports.getRuta = function (cb) {
+    let query = 'Select * from ruta'
+    con.query(query, function (err, results) {
+        if (err) return cb(err, null);
+        return cb(null, results);
+    })
+}
 exports.getUser = function (resultado) {
     con.query("SELECT * FROM user", function (err, result, fields) {
         if (err) throw err;
