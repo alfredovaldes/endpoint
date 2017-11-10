@@ -6,7 +6,7 @@ var db = require('../db.js')
 router.get('/', function (req, res, next) {
   var resultado = 0;
   var con = db.conexion;
-  con.query("SELECT * FROM user", function (err, result, fields) {
+  con.query("SELECT * FROM ruta", function (err, result, fields) {
     if (err) throw err;
     var data = JSON.stringify(result);  // <====    
     res.send(data);
