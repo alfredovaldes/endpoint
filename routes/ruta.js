@@ -12,7 +12,16 @@ router.get('/', function (req, res, next) {
     res.send(data);
   });
 });
-
+router.get('/:id', function (req, res, next) {
+    var resultado = 0;
+    var con = db.conexion;
+    console.log(req.params.id);
+    con.query("SELECT * FROM ruta WHERE codRuta="+req.params.id+";", function (err, result, fields) {
+      if (err) throw err;
+      var data = JSON.stringify(result);  // <====    
+      res.send(data);
+    });
+  });
 /* Other user*/
 /*
 router.get('/:id', function(req, res, next){
