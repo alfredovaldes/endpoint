@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const db = require('../db');
+//const db = require('../db');
 
 router.route('/:idcamion')
 .post(function(req, res, next){
