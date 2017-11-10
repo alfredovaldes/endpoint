@@ -1,7 +1,20 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db.js')
+const rutacontroller = require('../controllers/rutacontroller')
 
+router.route('/')
+  .get(rutacontroller.index)
+
+  .post(rutacontroller.post)
+
+router.route('/:id')
+  .get(rutacontroller.show)
+
+  .put(rutacontroller.put)
+
+  .delete(rutacontroller.delete)
+
+<<<<<<< HEAD
 router.get('/', function (req, res, next) {
   var resultado = 0;
   var con = db.conexion;
@@ -24,4 +37,6 @@ router.get('/:id', function (req, res, next) {
 
 });
 
+=======
+>>>>>>> ea4dcff7b8fc5659f6f530ce876478f7470c2620
 module.exports = router;

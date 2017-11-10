@@ -13,8 +13,7 @@ con.connect(function (err) {
     console.log("Connected!");
 });
 
-
-exports.getChofer = function (cb, userData) {
+exports.getChofer = function (id, cb) {
     let query = 'Select * from chofer'
     con.query(query, function (err, results) {
         if (err) return cb(err, null);
@@ -31,8 +30,10 @@ exports.setUser = function (cb, userData) {
   
 
 }
-exports.getCamion = function (cb) {
+exports.getCamion = function (id, cb) {
     let query = 'Select * from camiones'
+    if(id){query +=' where codCamion = "'+id+'"'}
+    console.log(query)
     con.query(query, function (err, results) {
         if (err) return cb(err, null);
         return cb(null, results);

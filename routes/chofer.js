@@ -1,31 +1,20 @@
 var express = require('express');
 var router = express.Router();
-const db = require('../db');
+const chofercontroller = require('../controllers/chofercontroller')
 
 router.route('/')
-.get(function(req, res, next){
-    getChofer(function(err,result){
-        if(err) return res.send(500)
-        return res.send(200, {result})
-    })
-})
-.post(function(req, res, next){res.send('Res post')})
-.put(function(req, res, next){res.send('Res put')})
-.delete(function(req, res, next){res.send('Res delete')})
+.get(chofercontroller.index)
 
-router.route('/:chofer')
-.get(function(req, res, next){res.send('Res get')})
+.post(chofercontroller.post)
 
-router.route('/:chofer/foto')
-.get(function(req, res, next){res.send('Res get')})
-.post(function(req, res, next){res.send('Res post')})
-.put(function(req, res, next){res.send('Res put')})
+router.route('/:choferId')
+.get(chofercontroller.show)
+
+.put(chofercontroller.put)
+
+.delete(chofercontroller.delete)
+
+router.route('/:choferId/foto')
+.get(chofercontroller.showPicture)
 
 module.exports = router;
-
-function getChofer(cb){
-    db.getChofer(function(err, result){
-        if(err) return cb(err,null);
-        return cb(null, result);
-    })
-}

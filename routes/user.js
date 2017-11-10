@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db.js')
+var {user} = require('../models')
 
 /* User Home. */
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res, next) {
   var resultado = 0;
-  var con = db.conexion;
-  con.query("SELECT * FROM user", function (err, result, fields) {
-    if (err) throw err;
-    var data = JSON.stringify(result);  // <====    
+  try{
+    const activeUsers = await user.findAll({})
+    const data = JSON.stringify(activeUsers)
     res.render('usersQuery', {
       data: data
-    });
-  });
+    })
+  }catch(err){
+    res.status(500).send({error: 'An error has ocurred'})
+  }
 });
 
 /* Other user*/

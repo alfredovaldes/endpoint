@@ -1,15 +1,18 @@
 var express = require('express');
 var router = express.Router();
-const db = require('../db');
+const camioncontroller = require('../controllers/camioncontroller')
 
 router.route('/')
-.get(function(req, res, next){res.send(getcamiones)})
-.post(function(req, res, next){res.send('Res post')})
-.put(function(req, res, next){res.send('Res put')})
-.delete(function(req, res, next){res.send('Res delete')})
+.get(camioncontroller.index)
 
-router.route('/:camion')
-.get(function(req, res, next){res.send('Res Id camion get')})
+.post(camioncontroller.post)
+
+router.route('/:camionId')
+.get(camioncontroller.show)
+
+.put(camioncontroller.put)
+
+.delete(camioncontroller.delete)
 
 
 module.exports = router;
