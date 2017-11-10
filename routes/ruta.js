@@ -9,6 +9,7 @@ router.get('/', function (req, res, next) {
     if (err) throw err;
     var data = JSON.stringify(result);  // <====    
     res.send(data);
+    con.release();
   });
 });
 /*
