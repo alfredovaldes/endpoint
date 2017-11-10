@@ -9,7 +9,7 @@ var con = mysql.createConnection({
 
 con.connect(function (err) {
     if (err) throw err;
-    console.log("Connected!");   
+    console.log("Connected!");
 });
 
 
@@ -19,6 +19,7 @@ exports.getChofer = function (cb, userData) {
         if (err) return cb(err, null);
         return cb(null, results);
     })
+    con.release();
 }
 exports.setUser = function (cb, userData) {
     var sql = "INSERT INTO user (uid, email, displayName) VALUES ('" + userData.uid + "','" + userData.email + "','" + userData.displayName + "')";
@@ -26,6 +27,8 @@ exports.setUser = function (cb, userData) {
         if (err) return cb(err, null);
         return cb(null, results);
     })
+    con.release();
+
 }
 exports.getCamion = function (cb) {
     let query = 'Select * from camiones'
@@ -33,6 +36,7 @@ exports.getCamion = function (cb) {
         if (err) return cb(err, null);
         return cb(null, results);
     })
+    con.release();
 }
 exports.getRuta = function (cb) {
     let query = 'Select * from ruta'
@@ -40,12 +44,16 @@ exports.getRuta = function (cb) {
         if (err) return cb(err, null);
         return cb(null, results);
     })
+    con.release();
+    
 }
 exports.getUser = function (resultado) {
     con.query("SELECT * FROM user", function (err, result, fields) {
         if (err) throw err;
         //console.log(result);
     });
-    return resultado; 
+    return resultado;
+    con.release();
+    
 }
-exports.conexion=con;
+exports.conexion = con;
