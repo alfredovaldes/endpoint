@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../db.js')
 
-/* User Home. */
 router.get('/', function (req, res, next) {
   var resultado = 0;
   var con = db.conexion;
@@ -12,6 +11,7 @@ router.get('/', function (req, res, next) {
     res.send(data);
   });
 });
+
 router.get('/:id', function (req, res, next) {
     var resultado = 0;
     var con = db.conexion;
@@ -22,10 +22,5 @@ router.get('/:id', function (req, res, next) {
       res.send(data);
     });
   });
-/* Other user*/
-/*
-router.get('/:id', function(req, res, next){
-  res.send('Res get')
-});
-*/
+
 module.exports = router;
