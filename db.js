@@ -4,7 +4,8 @@ var con = mysql.createConnection({
     host: "mysql.trivius-systems.com",
     user: "uberbus",
     password: "proyectoMIAg5",
-    database: "uberbus"
+    database: "uberbus",
+    encrypt: true
 });
 
 con.connect(function (err) {
