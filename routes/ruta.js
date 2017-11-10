@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
     res.send(data);
   });
 });
-
+/*
 router.get('/:id', function (req, res, next) {
     var resultado = 0;
     var con = db.conexion;
@@ -22,5 +22,5 @@ router.get('/:id', function (req, res, next) {
       res.send(data);
     });
   });
-
+*/
 module.exports = router;
