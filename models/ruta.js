@@ -2,42 +2,36 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('ruta', {
-    codRuta: {
-      type: DataTypes.STRING(45),
+    id: {
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     nombre: {
       type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    latitudPP: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
-    },
-    longitudPP: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: false
     },
     nombreLargo: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
     },
     nombreOrden: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
     },
     trayecto: {
       type: DataTypes.STRING(500),
-      allowNull: true
+      allowNull: false
     },
     tipo: {
       type: DataTypes.STRING(8),
-      allowNull: true
+      allowNull: false
     },
     activo: {
-      type: DataTypes.BOOLEAN(),
-      allowNull: true
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '0'
     }
   }, {
     timestamps: false,

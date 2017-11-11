@@ -2,10 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('chofer', {
-    codChofer: {
-      type: DataTypes.STRING(50),
+    id: {
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     noLicencia: {
       type: DataTypes.STRING(45),
@@ -46,19 +47,6 @@ module.exports = function(sequelize, DataTypes) {
     fotoChofer: {
       type: "LONGBLOB",
       allowNull: true
-    },
-    calficacionChofer: {
-      type: DataTypes.FLOAT,
-      allowNull: true
-    },
-    rating_codRating: {
-      type: DataTypes.STRING(45),
-      allowNull: false,
-      primaryKey: true,
-      references: {
-        model: 'rating',
-        key: 'codRating'
-      }
     }
   }, {
     timestamps: false,

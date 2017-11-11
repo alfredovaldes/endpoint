@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('parada', {
+  return sequelize.define('camion', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -12,16 +12,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: true
     },
-    latitud: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    longitud: {
-      type: DataTypes.DECIMAL,
+    placas: {
+      type: DataTypes.STRING(10),
       allowNull: false
     }
   }, {
     timestamps: false,
-    tableName: 'parada'
+    tableName: 'camion'
   });
 };
