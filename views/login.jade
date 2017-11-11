@@ -1,0 +1,92 @@
+doctype html
+html
+  head
+    title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  body
+    a#boton.waves-effect.waves-light.btn-large(onclick='loginGoogle()')
+      i.material-icons.left settings_system_daydream
+      | Iniciar Sesión
+    table#data
+      tr#user
+      tr#email
+      tr#photo
+  script(src='https://www.gstatic.com/firebasejs/4.5.0/firebase.js')
+  script(src='https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js')
+  script(src='https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js')
+  script(src='https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js')
+  script(src='https://www.gstatic.com/firebasejs/4.5.0/firebase-messaging.js')
+  script.
+    // Configura e Inicializa FireBase
+    var config = {
+    apiKey: "AIzaSyA-TEtL45EZDYWF28aNRfWzXXG6-yJaxlM",
+    authDomain: "testfire-miag5.firebaseapp.com",
+    databaseURL: "https://testfire-miag5.firebaseio.com",
+    projectId: "testfire-miag5",
+    storageBucket: "testfire-miag5.appspot.com",
+    messagingSenderId: "558360565772"
+    };
+    firebase.initializeApp(config);
+    //Dile que quieres iniciar con google
+    //Cuando presione el boton se va a ejecutar este metodo
+    firebase.auth().onAuthStateChanged(function(user) {
+     if (user) {
+    // User is signed in.
+    console.log('sup');
+    var element = document.getElementById("boton");
+    element.outerHTML = "";
+    document.getElementById("user").innerHTML = user.displayName;
+    document.getElementById("email").innerHTML = user.email;
+    document.getElementById("photo").innerHTML = "<img src=\""+user.photoURL+"\">";
+      } else {
+      // No user is signed in.
+      console.log('nope');
+      }
+    });
+    function loginGoogle() {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(function() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+      // In memory persistence will be applied to the signed in Google user
+      // even though the persistence was set to 'none' and a page redirect
+      // occurred.
+      return firebase.auth().signInWithPopup(provider).then(function (result) {
+    // Tomamos el Google Access Token. Con esto se accede a la API.
+    var token = result.credential.accessToken;
+    var user = result.user;
+    document.getElementById("user").innerHTML = user.displayName;
+    document.getElementById("email").innerHTML = user.email;
+    document.getElementById("photo").innerHTML = "<img src=\""+user.photoURL+"\">";
+    // ...
+    var userData ={
+        uid: user.uid,
+        email:user.email,
+        displayName:user.displayName,
+        photo:user.photoURL
+      };
+       var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "http://localhost:3000/login", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(userData));
+    }).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's accounta used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    });
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+    
+    }
