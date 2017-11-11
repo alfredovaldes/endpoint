@@ -7,7 +7,7 @@ router.route('/')
 
 .post(camioncontroller.post)
 
-router.route('/:camionId')
+router.route('/:id')
 .get(camioncontroller.show)
 
 .put(camioncontroller.put)

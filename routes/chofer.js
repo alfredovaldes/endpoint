@@ -7,14 +7,14 @@ router.route('/')
 
 .post(chofercontroller.post)
 
-router.route('/:choferId')
+router.route('/:id')
 .get(chofercontroller.show)
 
 .put(chofercontroller.put)
 
 .delete(chofercontroller.delete)
 
-router.route('/:choferId/foto')
+router.route('/:id/foto')
 .get(chofercontroller.showPicture)
 
 module.exports = router;

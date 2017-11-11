@@ -1,10 +1,10 @@
-var {camiones} = require('../models')
+var {camion} = require('../models')
 
 module.exports = {
   async index (req, res) {
     try
     {
-      const transportes = await camiones.findAll({})
+      const transportes = await camion.findAll({})
       res.send(transportes)
     }catch (err) {
       res.status(500).send({error: 'An error has ocurred'})
@@ -13,7 +13,7 @@ module.exports = {
   async show (req, res) {
     try
     {
-      const transporte = await camiones.findById(req.params.camionId)
+      const transporte = await camion.findById(req.params.id)
       res.send(transporte)
     }catch (err) {
       res.status(500).send({error: 'An error has ocurred'})
@@ -22,10 +22,9 @@ module.exports = {
     try
     {
       console.log(req.body)
-      const transportes = await camiones.create({
-        codCamion:req.body.codCamion,
+      const transportes = await camion.create({
         descripcion:req.body.descripcion,
-        rating_codRating:req.body.rating_codRating
+        placas:req.body.placas
       })
       res.send(transportes)
     }catch (err) {
@@ -34,7 +33,7 @@ module.exports = {
   },async put (req, res) {
     try
     {
-      const transporte = await camiones.update(req.body, {where: {codCamion: req.params.camionId}})
+      const transporte = await camion.update(req.body, {where: {id: req.params.id}})
       res.send(transporte)
     }catch (err) {
       res.status(500).send(err)
@@ -42,7 +41,7 @@ module.exports = {
   },async delete (req, res) {
     try
     {
-      await camiones.destroy({where: {codCamion: req.params.camionId}})
+      await camion.destroy({where: {id: req.params.id}})
       .on('success', (done)=>{
         if(done){
           res.send(200).send(done)          
