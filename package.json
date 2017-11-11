@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "web": "node ./bin/www"
+    "web": "node ./bin/www",
     "start": "node ./bin/www",
     "nodemon": "./node_modules/nodemon/bin/nodemon.js ./bin/www --exec 'node'"
   },
