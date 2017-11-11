@@ -20,5 +20,8 @@
     "nodemon": "^1.12.1",
     "sequelize": "^4.20.1",
     "serve-favicon": "~2.4.2"
+  },
+  "engines": {
+    "node": "7.10.1"
   }
 }
