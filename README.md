@@ -2,7 +2,7 @@
 
 > A Node.js project
 
-# Setup
+## Setup
 ``` bash
 # install dependencies
 npm install
