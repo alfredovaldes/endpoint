@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config =  require('./config/config')
 const { sequelize } = require('./models');
+const cors = require('cors')
+
 
 
 //Routes
@@ -33,6 +35,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors())
+
 
 app.use('/', index);
 app.use('/user', user);
