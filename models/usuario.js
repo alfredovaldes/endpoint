@@ -15,6 +15,10 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING(45),
       allowNull: true
+    },
+    password: {
+      type: DataTypes.STRING(45),
+      allowNull: true
     }
   }, {
     timestamps: false,
