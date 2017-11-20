@@ -17,18 +17,20 @@ module.exports = {
   async show (req, res) {
     try
     {
-      const user = await usuario.findById(req.params.id)
+      const user = await usuario.findById(req.body.id)
       res.send(user)
     }catch (err) {
       res.status(500).send({error: 'An error has ocurred'})
     }
   },async post (req, res) {
     try
-    {
-      var hashedPassword = bcrypt.hashSync(req.params.password, 8); 
+    {console.log("hi");
+    console.log(req);
+      var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+      console.log(hashedPassword); 
       let obj = {
-        nombre:req.params.nombre,
-        email: req.params.email,
+        nombre:req.body.nombre,
+        email: req.body.email,
         password: hashedPassword
       }
       var token = jwt.sign({nombre: obj.nombre}, config.secret, {
@@ -43,11 +45,11 @@ module.exports = {
     try
     {
       let objUpdate = {
-        nombre:req.params.nombre,
-        email: req.params.email,
-        password: req.params.password
+        nombre:req.body.nombre,
+        email: req.body.email,
+        password: req.body.password
       }
-      const user = await usuario.update(req.params, {where: {id: req.params.id}})
+      const user = await usuario.update(req.body, {where: {id: req.body.id}})
       res.send(user)
     }catch (err) {
       console.log(err)
@@ -56,7 +58,7 @@ module.exports = {
   },async delete (req, res) {
     try
     {
-      await usuario.destroy({where: {id: req.params.id}})
+      await usuario.destroy({where: {id: req.body.id}})
       .on('success', (done)=>{
         if(done){
           res.send(200).send(done)          
