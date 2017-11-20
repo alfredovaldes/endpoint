@@ -2,15 +2,7 @@ const Joi = require('joi')
 module.exports = {
   post(req, res, next) {
     const schema = {
-      noLicencia: Joi.number(),
-      vigenciaLicencia: Joi.date(),
       nomChofer: Joi.string(),
-      dirChofer: Joi.string(),
-      telChofer: Joi.number(),
-      celChofer: Joi.number(),
-      emailChofer: Joi.email(),
-      fechaNacimiento: Joi.date(),
-      fechaAlta: new Date(),
       fotoChofer: Joi.any()
     }
 
