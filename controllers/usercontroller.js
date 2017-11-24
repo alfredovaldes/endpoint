@@ -7,7 +7,7 @@ var config = require('../config/config')
 module.exports = {
   async index (req, res) {
     try
-    {
+    { console.log("made it here")
       const usuarios = await usuario.findAll({})
       res.send(usuarios)
     }catch (err) {
@@ -24,8 +24,7 @@ module.exports = {
     }
   },async post (req, res) {
     try
-    {console.log("hi");
-    console.log(req);
+    {
       var hashedPassword = bcrypt.hashSync(req.body.password, 8);
       console.log(hashedPassword); 
       let obj = {
