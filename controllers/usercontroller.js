@@ -38,7 +38,7 @@ module.exports = {
       const usuarios = await usuario.create(obj);
       res.status(200).send({ auth: true, token: token });      
     }catch (err) {
-      res.status(500).send({error: 'An error has ocurred'})
+      res.status(500).send({error: 'An error has ocurred here'})
     }
   },async put (req, res) {
     try

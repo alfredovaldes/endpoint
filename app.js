@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var config =  require('./config/config')
 const { sequelize } = require('./models');
 const cors = require('cors')
+var config = require('./config/config')
 
 
 
@@ -20,6 +21,7 @@ var parada = require('./routes/parada');
 var ruta = require('./routes/ruta');
 var trayecto = require('./routes/trayecto');
 var login =require('./routes/login');
+var jwt = require('express-jwt');
 
 
 var app = express();
@@ -36,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
-
+app.use(jwt({ secret: config.secret}).unless({path: ['/login',{ url: '/', methods: ['POST']  }]}));
 
 app.use('/', index);
 app.use('/user', user);
