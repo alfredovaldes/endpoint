@@ -8,6 +8,7 @@ var config =  require('./config/config')
 const { sequelize } = require('./models');
 const cors = require('cors')
 var config = require('./config/config')
+var fs = require('fs');
 
 
 
@@ -30,9 +31,11 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
+// --- uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+// log file
+var accessLogStream = fs.createWriteStream(__dirname + '/access.log',{flags: 'a'});
+app.use(logger('combined', {stream: accessLogStream}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

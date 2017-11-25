@@ -1,0 +1,6 @@
+::1 - - [21/Nov/2017:23:14:28 +0000] "GET /chofer HTTP/1.1" 200 50818 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36"
+::1 - - [21/Nov/2017:23:19:13 +0000] "GET /chofer HTTP/1.1" 200 50818 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36"
+::1 - - [21/Nov/2017:23:21:07 +0000] "GET /chofer HTTP/1.1" 200 50818 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36"
+::1 - GET /chofer 200 - 50818 - 131.968 ms
+::1 - - [21/Nov/2017:23:23:15 +0000] "GET /chofer HTTP/1.1" 200 50818 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36"
+::1 - - [21/Nov/2017:23:28:43 +0000] "GET /chofer HTTP/1.1" 200 50818 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36"
