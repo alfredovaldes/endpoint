@@ -21,6 +21,7 @@ var parada = require('./routes/parada');
 var ruta = require('./routes/ruta');
 var trayecto = require('./routes/trayecto');
 var login =require('./routes/login');
+var notificacion =require('./routes/notificacion');
 
 
 var app = express();
@@ -50,6 +51,7 @@ app.use('/parada', parada);
 app.use('/ruta', ruta);
 app.use('/trayecto', trayecto);
 app.use('/login', login);
+app.use('/notificacion', notificacion);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

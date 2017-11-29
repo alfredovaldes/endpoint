@@ -16,8 +16,3 @@ router.route('/:id')
 
 
 module.exports = router;
-
-function getcamiones(){
-
-
-}
