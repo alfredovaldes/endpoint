@@ -13,3 +13,4 @@ access.log
 *.ntvs*
 *.njsproj
 *.sln
+access.log

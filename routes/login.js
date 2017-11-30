@@ -4,15 +4,15 @@ const authcontroller = require('../controllers/authcontroller')
 const usercontroller = require('../controllers/usercontroller')
 
 router.route('/')
-  .get(authcontroller.index, usercontroller.index)
+  .get(usercontroller.index)
 
   .post(usercontroller.post)
 
 router.route('/:id')
-  .get(authcontroller.index, usercontroller.show)
+  .get(usercontroller.show)
 
-  .put(authcontroller.index, usercontroller.index)
+  .put(usercontroller.index)
 
-  .delete(authcontroller.index, usercontroller.delete)
+  .delete(usercontroller.delete)
 
 module.exports = router;
