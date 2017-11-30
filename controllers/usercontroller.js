@@ -1,7 +1,6 @@
 var {usuario} = require('../models')
 var _ = require('lodash')
 var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
 var config = require('../config/config')
 
 module.exports = {
@@ -27,9 +26,9 @@ module.exports = {
     {
       let obj = {
         nombre:req.body.nombre,
-        email: req.body.email,
+        email: req.body.email
       }
-      var token = jwt.sign({nombre: obj.nombre}, config.secret, {
+      var token = jwt.sign({email: obj.email }, config.secret, {
         expiresIn: 86400 // expires in 24 hours
       });
       const usuarios = await usuario.create(obj);
@@ -42,8 +41,7 @@ module.exports = {
     {
       let objUpdate = {
         nombre:req.body.nombre,
-        email: req.body.email,
-        password: req.body.password
+        email: req.body.email
       }
       const user = await usuario.update(req.body, {where: {id: req.body.id}})
       res.send(user)
