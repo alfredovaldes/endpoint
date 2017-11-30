@@ -25,19 +25,16 @@ module.exports = {
   },async post (req, res) {
     try
     {
-      var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-      console.log(hashedPassword); 
       let obj = {
         nombre:req.body.nombre,
         email: req.body.email,
-        password: hashedPassword
       }
       var token = jwt.sign({nombre: obj.nombre}, config.secret, {
         expiresIn: 86400 // expires in 24 hours
       });
       const usuarios = await usuario.create(obj);
       res.status(200).send({ auth: true, token: token });      
-    }catch (err) {
+    } catch (err) {
       res.status(500).send({error: 'An error has ocurred here'})
     }
   },async put (req, res) {
