@@ -8,6 +8,7 @@ module.exports = {
       const conductores = await chofer.findAll({})
       res.send(conductores)
     }catch (err) {
+      console.log(err)
       res.status(500).send({error: 'An error has ocurred'})
     }
   },
@@ -24,20 +25,12 @@ module.exports = {
     try
     {
       let obj = {
-        noLicencia:req.body.noLicencia,
-        vigenciaLicencia: req.body.vigenciaLicencia,
-        nomChofer:req.body.nomChofer,
-        dirChofer:req.body.dirChofer,
-        telChofer:req.body.telChofer,
-        celChofer:req.body.celChofer,
-        emailChofer:req.body.emailChofer,
-        fechaNacimiento: req.body.fechaNacimiento,
-        fechaAlta: new Date(),
-        fotoChofer:req.body.fotoChofer
+        nomChofer:req.body.nomChofer
       }
       const conductores = await chofer.create(obj)
       res.send(conductores)
     }catch (err) {
+      console.log(err)
       res.status(500).send({error: 'An error has ocurred'})
     }
   },
@@ -45,15 +38,7 @@ module.exports = {
     try
     {
       let objUpdate = {
-        noLicencia:req.body.noLicencia,
-        vigenciaLicencia: req.body.vigenciaLicencia,
-        nomChofer:req.body.nomChofer,
-        dirChofer:req.body.dirChofer,
-        telChofer:req.body.telChofer,
-        celChofer:req.body.celChofer,
-        emailChofer:req.body.emailChofer,
-        fechaNacimiento: req.body.fechaNacimiento,
-        fotoChofer:req.body.fotoChofer
+        nomChofer:req.body.nomChofer
       }
       const conductor = await chofer.update(req.body, {where: {id: req.params.id}})
       res.send(conductor)
@@ -82,6 +67,22 @@ module.exports = {
       const conductor = await chofer.findById(req.params.id, {attributes: ['fotoChofer']})
       res.send(conductor)
     }catch (err) {
+      res.status(500).send({error: 'An error has ocurred'})
+    }
+  },
+  async putPicture (req, res) {
+    try
+    {
+      const conductor = await chofer.findById(req.params.id)
+      if(!conductor){
+        return res.status(404).send({
+          error: 'Not found'
+        })
+      }
+      const newUUID = await conductor.generateUUID()
+      res.send({message:newUUID})
+    }catch (err) {
+      console.log(err)
       res.status(500).send({error: 'An error has ocurred'})
     }
   },

@@ -17,6 +17,8 @@ router.route('/:id')
 router.route('/:id/foto')
 .get(chofercontroller.showPicture)
 
+.put(chofercontroller.putPicture)
+
 router.route('/:id/camion')
 .get(chofercontroller.showCamion)
 
