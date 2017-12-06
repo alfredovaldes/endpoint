@@ -1,7 +1,6 @@
 var {usuario} = require('../models')
 var _ = require('lodash')
 var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
 var config = require('../config/config')
 
 module.exports = {
@@ -25,19 +24,16 @@ module.exports = {
   },async post (req, res) {
     try
     {
-      var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-      console.log(hashedPassword); 
       let obj = {
         nombre:req.body.nombre,
-        email: req.body.email,
-        password: hashedPassword
+        email: req.body.email
       }
-      var token = jwt.sign({nombre: obj.nombre}, config.secret, {
+      var token = jwt.sign({email: obj.email }, config.secret, {
         expiresIn: 86400 // expires in 24 hours
       });
       const usuarios = await usuario.create(obj);
       res.status(200).send({ auth: true, token: token });      
-    }catch (err) {
+    } catch (err) {
       res.status(500).send({error: 'An error has ocurred here'})
     }
   },async put (req, res) {
@@ -45,8 +41,7 @@ module.exports = {
     {
       let objUpdate = {
         nombre:req.body.nombre,
-        email: req.body.email,
-        password: req.body.password
+        email: req.body.email
       }
       const user = await usuario.update(req.body, {where: {id: req.body.id}})
       res.send(user)
