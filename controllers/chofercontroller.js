@@ -1,4 +1,4 @@
-var {chofer} = require('../models')
+var {camion, camionChofer, chofer} = require('../models')
 var _ = require('lodash')
 
 module.exports = {
@@ -19,7 +19,8 @@ module.exports = {
     }catch (err) {
       res.status(500).send({error: 'An error has ocurred'})
     }
-  },async post (req, res) {
+  },
+  async post (req, res) {
     try
     {
       let obj = {
@@ -39,7 +40,8 @@ module.exports = {
     }catch (err) {
       res.status(500).send({error: 'An error has ocurred'})
     }
-  },async put (req, res) {
+  },
+  async put (req, res) {
     try
     {
       let objUpdate = {
@@ -59,7 +61,8 @@ module.exports = {
       console.log(err)
       res.status(500).send({error: 'An error has ocurred'})
     }
-  },async delete (req, res) {
+  },
+  async delete (req, res) {
     try
     {
       await chofer.destroy({where: {id: req.params.id}})
@@ -72,12 +75,29 @@ module.exports = {
     }catch (err) {
       res.status(500).send({error: 'An error has ocurred'})
     }
-  },async showPicture (req, res) {
+  },
+  async showPicture (req, res) {
     try
     {
       const conductor = await chofer.findById(req.params.id, {attributes: ['fotoChofer']})
       res.send(conductor)
     }catch (err) {
+      res.status(500).send({error: 'An error has ocurred'})
+    }
+  },
+  async showCamion (req, res) {
+    console.log(req.params)
+    try
+    {
+      const transporte = await camionChofer.findAll({
+        where: {idChofer: req.params.id},
+        include: [{
+          model: camion
+        }]
+      })
+      res.send(transporte)
+    }catch (err) {
+      console.log(err)
       res.status(500).send({error: 'An error has ocurred'})
     }
   }

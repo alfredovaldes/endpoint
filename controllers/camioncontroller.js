@@ -1,4 +1,4 @@
-var {camion} = require('../models')
+var {camion, camionChofer, chofer, rutaCamion, ruta} = require('../models')
 
 module.exports = {
   async index (req, res) {
@@ -50,6 +50,36 @@ module.exports = {
       res.send()
     }catch (err) {
       res.status(500).send(err)
+    }
+  },
+  async showChofer (req, res) {
+    try
+    {
+      const transporte = await camionChofer.findAll({
+        where: {idCamion: req.params.id},
+        include: [{
+          model: chofer
+        }]
+      })
+      res.send(transporte)
+    }catch (err) {
+      console.log(err)
+      res.status(500).send({error: 'An error has ocurred'})
+    }
+  },
+  async showRuta (req, res) {
+    try
+    {
+      const transporte = await rutaCamion.findAll({
+        where: {idCamion: req.params.id},
+        include: [{
+          model: ruta
+        }]
+      })
+      res.send(transporte)
+    }catch (err) {
+      console.log(err)
+      res.status(500).send({error: 'An error has ocurred'})
     }
   }
 }

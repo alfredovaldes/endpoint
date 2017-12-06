@@ -1,4 +1,4 @@
-var {ruta} = require('../models')
+var {ruta, rutaParada, parada, rutaCamion, camion} = require('../models')
 
 module.exports = {
   async index (req, res) {
@@ -18,7 +18,8 @@ module.exports = {
     }catch (err) {
       res.status(500).send({error: 'An error has ocurred'})
     }
-  },async post (req, res) {
+  },
+  async post (req, res) {
     try
     {
       console.log(req.body)
@@ -35,7 +36,8 @@ module.exports = {
     }catch (err) {
       res.status(500).send(err)
     }
-  },async put (req, res) {
+  },
+  async put (req, res) {
     try
     {
       const rutaobject = await ruta.update(req.body, {where: {codRuta: req.params.id}})
@@ -43,7 +45,8 @@ module.exports = {
     }catch (err) {
       res.status(500).send(err)
     }
-  },async delete (req, res) {
+  },
+  async delete (req, res) {
     try
     {
       await ruta.destroy({where: {codRuta: req.params.id}})
@@ -55,6 +58,36 @@ module.exports = {
       res.send()
     }catch (err) {
       res.status(500).send(err)
+    }
+  },
+  async showParadas (req, res) {
+    try
+    {
+      const paradas = await rutaParada.findAll({
+        where: {idRuta: req.params.id},
+        include: [{
+          model: parada
+        }]
+      })
+      res.send(paradas)
+    }catch (err) {
+      console.log(err)
+      res.status(500).send({error: 'An error has ocurred'})
+    }
+  },
+  async showCamiones (req, res) {
+    try
+    {
+      const camiones = await rutaCamion.findAll({
+        where: {idRuta: req.params.id},
+        include: [{
+          model: camion
+        }]
+      })
+      res.send(camiones)
+    }catch (err) {
+      console.log(err)
+      res.status(500).send({error: 'An error has ocurred'})
     }
   }
 }

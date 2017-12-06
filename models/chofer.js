@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     fotoChofer: {
-      type: "LONGBLOB",
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
       allowNull: true
     }
   }, {

@@ -17,4 +17,8 @@ router.route('/:id')
 router.route('/:id/foto')
 .get(chofercontroller.showPicture)
 
+router.route('/:id/camion')
+.get(chofercontroller.showCamion)
+
+
 module.exports = router;
