@@ -1,5 +1,4 @@
 /* jshint indent: 2 */
-const uuidv1 = require('uuid/v1');
 
 module.exports = function(sequelize, DataTypes) {
   const chofer = sequelize.define('chofer', {
@@ -22,9 +21,6 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     tableName: 'chofer'
   })
-  chofer.prototype.generateUUID = function () {
-    return uuidv1();
-  }
   
   return chofer
 };

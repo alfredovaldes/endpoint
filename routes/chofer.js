@@ -1,6 +1,18 @@
 var express = require('express');
 var router = express.Router();
 const chofercontroller = require('../controllers/chofercontroller')
+var path = require('path')
+var multer = require('multer')
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+});
+var upload = multer({ storage: storage });
+
 
 router.route('/')
 .get(chofercontroller.index)
@@ -17,7 +29,7 @@ router.route('/:id')
 router.route('/:id/foto')
 .get(chofercontroller.showPicture)
 
-.put(chofercontroller.putPicture)
+.post(upload.single('image'),chofercontroller.postPicture)
 
 router.route('/:id/camion')
 .get(chofercontroller.showCamion)
