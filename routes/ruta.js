@@ -14,4 +14,10 @@ router.route('/:id')
 
   .delete(rutacontroller.delete)
 
+router.route('/:id/paradas')
+  .get(rutacontroller.showParadas)
+
+  router.route('/:id/camiones')
+  .get(rutacontroller.showCamiones)
+  
 module.exports = router;

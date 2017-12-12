@@ -8,6 +8,9 @@ module.exports = {
       dialect: process.env.DB_NAME || 'mysql',
       host: process.env.DB_NAME || 'mysql.trivius-systems.com',
       operatorsAliases: 'Sequelize.Op'
+    },
+    logging: function(str){
+      console.log("puto");
     }
   },
   authentication: {

@@ -14,5 +14,10 @@ router.route('/:id')
 
 .delete(camioncontroller.delete)
 
+router.route('/:id/chofer')
+.get(camioncontroller.showChofer)
+
+router.route('/:id/ruta')
+.get(camioncontroller.showRuta)
 
 module.exports = router;

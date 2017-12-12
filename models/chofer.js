@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('chofer', {
+  const chofer = sequelize.define('chofer', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -13,11 +13,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     fotoChofer: {
-      type: "LONGBLOB",
+      type: DataTypes.UUID,
+      //defaultValue: DataTypes.UUIDV1,
       allowNull: true
     }
   }, {
     timestamps: false,
     tableName: 'chofer'
-  });
+  })
+  
+  return chofer
 };

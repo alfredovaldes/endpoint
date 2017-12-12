@@ -6,9 +6,9 @@ var config = require('../config/config')
 module.exports = {
   async index(req, res) {
     try {
-      console.log(req.user);              
-      console.log("made it here")
-      const usuarios = await usuario.findAll({})
+      //console.log(req.user);              
+      //console.log("made it here")
+      const usuarios = await usuario.findAll({}).then(function(usuarios){console.log(usuarios);})
       res.send(usuarios)
     } catch (err) {
       res.status(500).send({ error: 'An error has ocurred' })
@@ -36,14 +36,9 @@ module.exports = {
     } catch (err) {
       res.status(500).send(req.body)
     }
-  }, async put(req, res) {
+  }, async get(req, res) {
     try {
-      let objUpdate = {
-        nombre: req.body.nombre,
-        email: req.body.email
-      }
-      const user = await usuario.update(req.body, { where: { id: req.body.id } })
-      res.send(user)
+      res.download("message.txt")            
     } catch (err) {
       console.log(err)
       res.status(500).send({ error: 'An error has ocurred' })

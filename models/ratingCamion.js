@@ -12,19 +12,21 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(1),
       allowNull: false
     },
-    fecha: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
     idCamion: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      references: {
+        model: 'camion',
+        key: 'id'
+      }
     },
     idUsuario: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      references: {
+        model: 'usuario',
+        key: 'id'
+      }
     }
   }, {
     timestamps: false,

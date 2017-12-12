@@ -23,6 +23,7 @@ var ruta = require('./routes/ruta');
 var trayecto = require('./routes/trayecto');
 var login =require('./routes/login');
 var adminlogin =require('./routes/adminlogin');
+var download =require('./routes/download');
 var notificacion =require('./routes/notificacion');
 var jwt = require('express-jwt');
 
@@ -57,6 +58,8 @@ app.use('/trayecto', trayecto);
 app.use('/login', login);
 app.use('/adminlogin', adminlogin);
 app.use('/notificacion', notificacion);
+app.use('/download', download);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
