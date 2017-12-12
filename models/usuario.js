@@ -17,6 +17,10 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING(45),
       allowNull: true
+    },
+    uid: {
+      type: DataTypes.STRING(45),
+      allowNull: true
     }
   }, {
       timestamps: false,

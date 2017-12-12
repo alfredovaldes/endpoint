@@ -22,6 +22,7 @@ var parada = require('./routes/parada');
 var ruta = require('./routes/ruta');
 var trayecto = require('./routes/trayecto');
 var login =require('./routes/login');
+var adminlogin =require('./routes/adminlogin');
 var notificacion =require('./routes/notificacion');
 var jwt = require('express-jwt');
 
@@ -43,7 +44,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
-//app.use(jwt({ secret: config.secret}).unless({path: ['/login',{ url: '/', methods: ['POST']  }]}));
+//app.use(jwt({ secret: config.secret}).unless({path: ['/login','/adminlogin',{ url: '/', methods: ['POST']  }]}));
 
 app.use('/', index);
 app.use('/user', user);
@@ -54,6 +55,7 @@ app.use('/parada', parada);
 app.use('/ruta', ruta);
 app.use('/trayecto', trayecto);
 app.use('/login', login);
+app.use('/adminlogin', adminlogin);
 app.use('/notificacion', notificacion);
 
 // catch 404 and forward to error handler

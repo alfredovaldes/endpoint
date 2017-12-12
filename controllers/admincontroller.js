@@ -6,6 +6,7 @@ var config = require('../config/config')
 module.exports = {
   async index(req, res) {
     try {
+      console.log(req.user);              
       console.log("made it here")
       const usuarios = await usuario.findAll({})
       res.send(usuarios)
@@ -21,13 +22,13 @@ module.exports = {
       res.status(500).send({ error: 'An error has ocurred' })
     }
   }, async post(req, res) {
-    try {      
+    try {
         let obj = {
           nombre: req.body.nombre,
           email: req.body.email,
           uid: req.body.uid
         }
-      var token = jwt.sign({ email: obj.email, admin: 0}, config.secret, {
+      var token = jwt.sign({ email: obj.email, admin: 1 }, config.secret, {
         expiresIn: 86400 // expires in 24 hours
       });
       const usuarios = await usuario.create(obj);
