@@ -333,3 +333,5 @@
 ::1 - - [12/Dec/2017:23:38:49 +0000] "GET /ruta HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
 ::1 - - [12/Dec/2017:23:38:50 +0000] "GET /ruta HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
 ::1 - - [12/Dec/2017:23:38:51 +0000] "GET /download HTTP/1.1" 200 2398 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
+::1 - - [13/Dec/2017:04:58:22 +0000] "GET /ruta HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
+::1 - - [13/Dec/2017:04:58:23 +0000] "GET /favicon.ico HTTP/1.1" 404 3311 "http://localhost:3000/ruta" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"

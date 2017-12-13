@@ -12,12 +12,12 @@ module.exports = {
         logging: function (sql) {
           (fs.appendFileSync(
             'message.txt',
-            "IP: " + req._remoteAddress + "\n Time: " + req._startTime + "\n query: " + sql + "\n")
+            "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
           )
         }
       }
       )
-      
+
       res.send(rutas)
     } catch (err) {
       res.status(500).send({ error: 'An error has ocurred' })
@@ -25,7 +25,14 @@ module.exports = {
   },
   async show(req, res) {
     try {
-      const rutaobject = await ruta.findById(req.params.id).then(function (rutaobject) { console.log(rutaobject); })
+      const rutaobject = await ruta.findById(req.params.id, {
+        logging: function (sql) {
+          (fs.appendFileSync(
+            'message.txt',
+            "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
+          )
+        }
+      }).then(function (rutaobject) { console.log(rutaobject); })
       res.send(rutaobject)
     } catch (err) {
       res.status(500).send({ error: 'An error has ocurred' })
@@ -42,8 +49,15 @@ module.exports = {
         trayecto: req.body.trayecto,
         tipo: req.body.tipo,
         activo: req.body.activo
-      })
-      
+      }, {
+          logging: function (sql) {
+            (fs.appendFileSync(
+              'message.txt',
+              "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
+            )
+          }
+        })
+
       res.send(rutas)
     } catch (err) {
       res.status(500).send(err)
@@ -51,7 +65,14 @@ module.exports = {
   },
   async put(req, res) {
     try {
-      const rutaobject = await ruta.update(req.body, { where: { codRuta: req.params.id } })
+      const rutaobject = await ruta.update(req.body, { where: { codRuta: req.params.id } }, {
+        logging: function (sql) {
+          (fs.appendFileSync(
+            'message.txt',
+            "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
+          )
+        }
+      })
       res.send(rutaobject)
     } catch (err) {
       res.status(500).send(err)
@@ -63,6 +84,13 @@ module.exports = {
         .on('success', (done) => {
           if (done) {
             res.send(200).send(done)
+          }
+        }, {
+          logging: function (sql) {
+            (fs.appendFileSync(
+              'message.txt',
+              "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
+            )
           }
         })
       res.send()
@@ -77,7 +105,14 @@ module.exports = {
         include: [{
           model: parada
         }]
-      })
+      }, {
+          logging: function (sql) {
+            (fs.appendFileSync(
+              'message.txt',
+              "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
+            )
+          }
+        })
       res.send(paradas)
     } catch (err) {
       console.log(err)
@@ -91,7 +126,14 @@ module.exports = {
         include: [{
           model: camion
         }]
-      })
+      }, {
+          logging: function (sql) {
+            (fs.appendFileSync(
+              'message.txt',
+              "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
+            )
+          }
+        })
       res.send(camiones)
     } catch (err) {
       console.log(err)
