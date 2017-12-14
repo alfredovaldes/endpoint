@@ -14,6 +14,7 @@ var fs = require('fs');
 
 //Routes
 var index = require('./routes/index');
+var posicion = require('./routes/posicion');
 var user = require('./routes/user');
 var camion = require('./routes/camion');
 var chofer = require('./routes/chofer');
@@ -62,6 +63,7 @@ app.use('/login', login);
 app.use('/adminlogin', adminlogin);
 app.use('/notificacion', notificacion);
 app.use('/download', download);
+app.use('/posicion', posicion);
 
 
 // catch 404 and forward to error handler
