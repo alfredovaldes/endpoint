@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var config =  require('./config/config')
+var config = require('./config/config')
 const { sequelize } = require('./models');
 const cors = require('cors')
 var config = require('./config/config')
@@ -21,10 +21,10 @@ var comentario = require('./routes/comentario');
 var parada = require('./routes/parada');
 var ruta = require('./routes/ruta');
 var trayecto = require('./routes/trayecto');
-var login =require('./routes/login');
-var adminlogin =require('./routes/adminlogin');
-var download =require('./routes/download');
-var notificacion =require('./routes/notificacion');
+var login = require('./routes/login');
+var adminlogin = require('./routes/adminlogin');
+var download = require('./routes/download');
+var notificacion = require('./routes/notificacion');
 var jwt = require('express-jwt');
 
 
@@ -38,8 +38,11 @@ app.set('view engine', 'jade');
 // --- uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // log file
-var accessLogStream = fs.createWriteStream(__dirname + '/access.log',{flags: 'a'});
-app.use(logger('combined', {stream: accessLogStream}));
+logger.token('new-line', function getId () {
+  return '\n'
+})
+var accessLogStream = fs.createWriteStream(__dirname + '/access.log', { flags: 'a' });
+app.use(logger(':remote-addr :date :new-line',{ stream: accessLogStream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -62,18 +65,18 @@ app.use('/download', download);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 sequelize.sync()
-.then(() => {
-})
+  .then(() => {
+  })
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

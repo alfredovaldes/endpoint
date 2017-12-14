@@ -1,37 +1,104 @@
-IP: ::1
- Time: Tue Dec 12 2017 17:00:05 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:00:10 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:03:45 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:03:51 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:03:55 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:23:09 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:33:45 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:38:46 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:38:47 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:38:49 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
-IP: ::1
- Time: Tue Dec 12 2017 17:38:50 GMT-0600 (Hora estándar central (México))
- query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;
 
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `admin` (`id` INTEGER(11) NOT NULL auto_increment , `nombre` VARCHAR(45), `usario` VARCHAR(45), `contraseña` VARCHAR(150), PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `admin`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `camion` (`id` INTEGER(11) NOT NULL auto_increment , `descripcion` VARCHAR(45), `placas` VARCHAR(10) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `camion`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `chofer` (`id` INTEGER(11) NOT NULL auto_increment , `nomChofer` VARCHAR(45), `fotoChofer` CHAR(36) BINARY, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `chofer`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `camionChofer` (`id` INTEGER(11) NOT NULL , `idCamion` INTEGER(11) NOT NULL, `idChofer` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idCamion`) REFERENCES `camion` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (`idChofer`) REFERENCES `chofer` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `camionChofer`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `notificacion` (`id` INTEGER(11) NOT NULL auto_increment , `mensaje` VARCHAR(40), PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `notificacion`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `parada` (`id` INTEGER(11) NOT NULL auto_increment , `descripcion` VARCHAR(45), `latitud` DECIMAL NOT NULL, `longitud` DECIMAL NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `parada`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `usuario` (`id` INTEGER(11) NOT NULL auto_increment , `nombre` VARCHAR(45), `email` VARCHAR(45), `password` VARCHAR(45), `uid` VARCHAR(45), PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `usuario`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `ratingCamion` (`id` INTEGER(11) NOT NULL auto_increment , `calificacion` INTEGER(1) NOT NULL, `idCamion` INTEGER(11) NOT NULL, `idUsuario` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idCamion`) REFERENCES `camion` (`id`), FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `ratingCamion`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `ratingChofer` (`id` INTEGER(11) NOT NULL auto_increment , `calificacion` INTEGER(1) NOT NULL, `idChofer` INTEGER(11) NOT NULL, `idUsuario` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idChofer`) REFERENCES `chofer` (`id`), FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `ratingChofer`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `ruta` (`id` INTEGER(11) NOT NULL auto_increment , `nombre` VARCHAR(45) NOT NULL, `nombreLargo` VARCHAR(45) NOT NULL, `nombreOrden` VARCHAR(45) NOT NULL, `trayecto` VARCHAR(500) NOT NULL, `tipo` VARCHAR(8) NOT NULL, `activo` INTEGER(1) NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `ruta`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `rutaCamion` (`id` INTEGER(11) NOT NULL , `idRuta` INTEGER(11) NOT NULL, `idCamion` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idRuta`) REFERENCES `ruta` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (`idCamion`) REFERENCES `camion` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `rutaCamion`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `rutaParada` (`id` INTEGER(11) NOT NULL , `idRuta` INTEGER(11) NOT NULL, `idParada` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idRuta`) REFERENCES `ruta` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (`idParada`) REFERENCES `parada` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE) ENGINE=InnoDB;
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SHOW INDEX FROM `rutaParada`
+ IP: undefined
+ Time: undefined
+ query: Executing (default): SELECT `id`, `nomChofer`, `fotoChofer` FROM `chofer` AS `chofer`;
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `admin` (`id` INTEGER(11) NOT NULL auto_increment , `nombre` VARCHAR(45), `usario` VARCHAR(45), `contraseña` VARCHAR(150), PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `admin`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `camion` (`id` INTEGER(11) NOT NULL auto_increment , `descripcion` VARCHAR(45), `placas` VARCHAR(10) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `camion`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `chofer` (`id` INTEGER(11) NOT NULL auto_increment , `nomChofer` VARCHAR(45), `fotoChofer` CHAR(36) BINARY, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `chofer`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `camionChofer` (`id` INTEGER(11) NOT NULL , `idCamion` INTEGER(11) NOT NULL, `idChofer` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idCamion`) REFERENCES `camion` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (`idChofer`) REFERENCES `chofer` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `camionChofer`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `notificacion` (`id` INTEGER(11) NOT NULL auto_increment , `mensaje` VARCHAR(40), PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `notificacion`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `parada` (`id` INTEGER(11) NOT NULL auto_increment , `descripcion` VARCHAR(45), `latitud` DECIMAL NOT NULL, `longitud` DECIMAL NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `parada`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `usuario` (`id` INTEGER(11) NOT NULL auto_increment , `nombre` VARCHAR(45), `email` VARCHAR(45), `password` VARCHAR(45), `uid` VARCHAR(45), PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `usuario`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `ratingCamion` (`id` INTEGER(11) NOT NULL auto_increment , `calificacion` INTEGER(1) NOT NULL, `idCamion` INTEGER(11) NOT NULL, `idUsuario` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idCamion`) REFERENCES `camion` (`id`), FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `ratingCamion`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `ratingChofer` (`id` INTEGER(11) NOT NULL auto_increment , `calificacion` INTEGER(1) NOT NULL, `idChofer` INTEGER(11) NOT NULL, `idUsuario` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idChofer`) REFERENCES `chofer` (`id`), FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `ratingChofer`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `ruta` (`id` INTEGER(11) NOT NULL auto_increment , `nombre` VARCHAR(45) NOT NULL, `nombreLargo` VARCHAR(45) NOT NULL, `nombreOrden` VARCHAR(45) NOT NULL, `trayecto` VARCHAR(500) NOT NULL, `tipo` VARCHAR(8) NOT NULL, `activo` INTEGER(1) NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `ruta`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `rutaCamion` (`id` INTEGER(11) NOT NULL , `idRuta` INTEGER(11) NOT NULL, `idCamion` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idRuta`) REFERENCES `ruta` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (`idCamion`) REFERENCES `camion` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `rutaCamion`
+ query: Executing (default): CREATE TABLE IF NOT EXISTS `rutaParada` (`id` INTEGER(11) NOT NULL , `idRuta` INTEGER(11) NOT NULL, `idParada` INTEGER(11) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`idRuta`) REFERENCES `ruta` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (`idParada`) REFERENCES `parada` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE) ENGINE=InnoDB;
+ query: Executing (default): SHOW INDEX FROM `rutaParada`
+ query: Executing (default): SELECT `id`, `nomChofer`, `fotoChofer` FROM `chofer` AS `chofer`;
  IP: ::1
- Time: Tue Dec 12 2017 22:58:21 GMT-0600 (Hora estándar central (México))
+ Time: Thu Dec 14 2017 13:03:09 GMT-0600 (Hora estándar central (México))
  query: Executing (default): SELECT `id`, `nombre`, `nombreLargo`, `nombreOrden`, `trayecto`, `tipo`, `activo` FROM `ruta` AS `ruta`;

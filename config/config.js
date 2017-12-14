@@ -1,3 +1,5 @@
+var fs = require('fs')
+var path = require('path')
 module.exports = {
   port: 8081,
   db: {
@@ -7,11 +9,14 @@ module.exports = {
     options: {
       dialect: process.env.DB_NAME || 'mysql',
       host: process.env.DB_NAME || 'mysql.trivius-systems.com',
-      operatorsAliases: 'Sequelize.Op'
+      operatorsAliases: 'Sequelize.Op',
+      logging: function (sql) {
+        (fs.appendFileSync(
+          'access.log',
+          "query: " + sql+ " ")
+        )
+      }
     },
-    logging: function(str){
-      console.log("puto");
-    }
   },
   authentication: {
     jwtSecret: process.env.JWT_SECRET || 'secret'

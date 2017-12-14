@@ -8,15 +8,7 @@ module.exports = {
   async index(req, res) {
     try {
       var query = "";
-      const rutas = await ruta.findAll({
-        logging: function (sql) {
-          (fs.appendFileSync(
-            'message.txt',
-            "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
-          )
-        }
-      }
-      )
+      const rutas = await ruta.findAll({})
 
       res.send(rutas)
     } catch (err) {
@@ -25,14 +17,7 @@ module.exports = {
   },
   async show(req, res) {
     try {
-      const rutaobject = await ruta.findById(req.params.id, {
-        logging: function (sql) {
-          (fs.appendFileSync(
-            'message.txt',
-            "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
-          )
-        }
-      }).then(function (rutaobject) { console.log(rutaobject); })
+      const rutaobject = await ruta.findById(req.params.id, {})
       res.send(rutaobject)
     } catch (err) {
       res.status(500).send({ error: 'An error has ocurred' })
@@ -40,7 +25,6 @@ module.exports = {
   },
   async post(req, res) {
     try {
-      console.log(req.body)
       const rutas = await ruta.create({
         codRuta: req.body.codRuta,
         nombre: req.body.nombre,
@@ -49,15 +33,7 @@ module.exports = {
         trayecto: req.body.trayecto,
         tipo: req.body.tipo,
         activo: req.body.activo
-      }, {
-          logging: function (sql) {
-            (fs.appendFileSync(
-              'message.txt',
-              "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
-            )
-          }
-        })
-
+      }, {})
       res.send(rutas)
     } catch (err) {
       res.status(500).send(err)
@@ -65,14 +41,7 @@ module.exports = {
   },
   async put(req, res) {
     try {
-      const rutaobject = await ruta.update(req.body, { where: { codRuta: req.params.id } }, {
-        logging: function (sql) {
-          (fs.appendFileSync(
-            'message.txt',
-            "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
-          )
-        }
-      })
+      const rutaobject = await ruta.update(req.body, { where: { codRuta: req.params.id } }, {})
       res.send(rutaobject)
     } catch (err) {
       res.status(500).send(err)
@@ -85,14 +54,7 @@ module.exports = {
           if (done) {
             res.send(200).send(done)
           }
-        }, {
-          logging: function (sql) {
-            (fs.appendFileSync(
-              'message.txt',
-              "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
-            )
-          }
-        })
+        }, {})
       res.send()
     } catch (err) {
       res.status(500).send(err)
@@ -105,14 +67,7 @@ module.exports = {
         include: [{
           model: parada
         }]
-      }, {
-          logging: function (sql) {
-            (fs.appendFileSync(
-              'message.txt',
-              "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
-            )
-          }
-        })
+      }, {})
       res.send(paradas)
     } catch (err) {
       console.log(err)
@@ -126,14 +81,7 @@ module.exports = {
         include: [{
           model: camion
         }]
-      }, {
-          logging: function (sql) {
-            (fs.appendFileSync(
-              'message.txt',
-              "\n IP: " + req.ip + "\n Time: " + req._startTime + "\n query: " + sql)
-            )
-          }
-        })
+      }, {})
       res.send(camiones)
     } catch (err) {
       console.log(err)

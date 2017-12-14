@@ -38,7 +38,7 @@ module.exports = {
     }
   }, async get(req, res) {
     try {
-      res.download("message.txt")            
+      res.download("access.log")            
     } catch (err) {
       console.log(err)
       res.status(500).send({ error: 'An error has ocurred' })
