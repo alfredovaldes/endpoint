@@ -1,15 +1,17 @@
 var express = require('express');
 var router = express.Router();
+const paradacontroller = require('../controllers/paradacontroller')
 
-/* Paradas existentes en ruta especificada */
-router.get('/:ruta', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.route('/')
+  .get(paradacontroller.index)
 
-/* Rutas que pasan por una parada especifica */
-router.get('/rutas/:parada', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+  .post(paradacontroller.post)
 
+router.route('/:id')
+  .get(paradacontroller.show)
+
+  .put(paradacontroller.put)
+
+  .delete(paradacontroller.delete)
 
 module.exports = router;
