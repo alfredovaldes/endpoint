@@ -43,7 +43,7 @@ logger.token('new-line', function getId () {
   return '\n'
 })
 var accessLogStream = fs.createWriteStream(__dirname + '/access.log', { flags: 'a' });
-app.use(logger(':remote-addr :date :new-line',{ stream: accessLogStream }));
+app.use(logger(':remote-addr :method :url :date :new-line',{ stream: accessLogStream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
