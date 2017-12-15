@@ -27,6 +27,8 @@ var adminlogin = require('./routes/adminlogin');
 var download = require('./routes/download');
 var notificacion = require('./routes/notificacion');
 var jwt = require('express-jwt');
+var serveStatic = require('serve-static');
+
 
 
 
@@ -35,6 +37,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(serveStatic(__dirname + "/dist"));
+
 
 // --- uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
