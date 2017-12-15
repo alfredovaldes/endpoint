@@ -1,5 +1,4 @@
-var {camion, camionChofer, chofer, rutaCamion, ruta} = require('../models')
-
+var {sequelize, camion, camionChofer, chofer, rutaCamion, ruta} = require('../models')
 module.exports = {
   async index (req, res) {
     try
@@ -21,7 +20,6 @@ module.exports = {
   },async post (req, res) {
     try
     {
-      console.log(req.body)
       const transportes = await camion.create({
         descripcion:req.body.descripcion,
         placas:req.body.placas
@@ -58,7 +56,6 @@ module.exports = {
       })
       res.send(transporte)
     }catch (err) {
-      console.log(err)
       res.status(500).send({error: 'An error has ocurred'})
     }
   },
@@ -73,26 +70,29 @@ module.exports = {
       })
       res.send(transporte)
     }catch (err) {
-      console.log(err)
       res.status(500).send({error: 'An error has ocurred'})
     }
   },
   async postCamionChofer (req, res) {
-    console.log(req.body)
     try {
+      const [query] = (await sequelize.query('SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = "camionChofer"'))[0]
+      autoincrement= query.AUTO_INCREMENT      
       const camionchofer = await camionChofer.create({
+        id:autoincrement,
         idCamion:req.body.idCamion,
         idChofer:req.body.idChofer
       })
       res.send(camionchofer)
     } catch (error) {
-      console.log(error)
       res.status(500).send({error: 'An error has ocurred'})
     }
   },
   async postCamionRuta (req, res) {
     try {
+      const [query] = (await sequelize.query('SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = "camionRuta"'))[0]
+      autoincrement= query.AUTO_INCREMENT      
       const camionruta = await camionRuta.create({
+        id:autoincrement,
         idCamion:req.body.idCamion,
         idRuta:req.body.idRuta
       })
