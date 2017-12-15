@@ -41,12 +41,7 @@ module.exports = {
     async delete(req, res) {
         try {
             await parada.destroy({ where: { id: req.params.id } })
-                .on('success', (done) => {
-                    if (done) {
-                        res.send(200).send(done)
-                    }
-                }, {})
-            res.send()
+            res.status(200).send(parada)
         } catch (err) {
             res.status(500).send(err)
         }
