@@ -26,13 +26,13 @@ module.exports = {
   async post(req, res) {
     try {
       const rutas = await ruta.create({
-        codRuta: req.body.codRuta,
+        id: req.body.id,
         nombre: req.body.nombre,
         nombreLargo: req.body.nombreLargo,
         nombreOrden: req.body.nombreOrden,
         trayecto: req.body.trayecto,
-        tipo: req.body.tipo,
-        activo: req.body.activo
+        tipo: "ruta",
+        activo: 1
       }, {})
       res.send(rutas)
     } catch (err) {
@@ -41,23 +41,19 @@ module.exports = {
   },
   async put(req, res) {
     try {
-      const rutaobject = await ruta.update(req.body, { where: { codRuta: req.params.id } }, {})
+      const rutaobject = await ruta.update(req.body, { where: { id: req.params.id } })
       res.send(rutaobject)
     } catch (err) {
       res.status(500).send(err)
     }
   },
   async delete(req, res) {
-    try {
-      await ruta.destroy({ where: { codRuta: req.params.id } })
-        .on('success', (done) => {
-          if (done) {
-            res.send(200).send(done)
-          }
-        }, {})
-      res.send()
-    } catch (err) {
-      res.status(500).send(err)
+    try
+    {
+      await ruta.destroy({where: {id: req.params.id}})
+      res.status(200).send(ruta)
+    }catch (err) {
+      res.status(500).send({error: 'An error has ocurred'})
     }
   },
   async showParadas(req, res) {

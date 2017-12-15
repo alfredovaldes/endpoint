@@ -20,4 +20,10 @@ router.route('/:id/chofer')
 router.route('/:id/ruta')
 .get(camioncontroller.showRuta)
 
+router.route('/camionchofer')
+.post(camioncontroller.postCamionChofer)
+
+router.route('/camionruta')
+.post(camioncontroller.postCamionRuta)
+
 module.exports = router;

@@ -42,12 +42,7 @@ module.exports = {
     try
     {
       await camion.destroy({where: {id: req.params.id}})
-      .on('success', (done)=>{
-        if(done){
-          res.send(200).send(done)          
-        }
-      })
-      res.send()
+      res.status(200).send(camion)
     }catch (err) {
       res.status(500).send(err)
     }
@@ -79,6 +74,30 @@ module.exports = {
       res.send(transporte)
     }catch (err) {
       console.log(err)
+      res.status(500).send({error: 'An error has ocurred'})
+    }
+  },
+  async postCamionChofer (req, res) {
+    console.log(req.body)
+    try {
+      const camionchofer = await camionChofer.create({
+        idCamion:req.body.idCamion,
+        idChofer:req.body.idChofer
+      })
+      res.send(camionchofer)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send({error: 'An error has ocurred'})
+    }
+  },
+  async postCamionRuta (req, res) {
+    try {
+      const camionruta = await camionRuta.create({
+        idCamion:req.body.idCamion,
+        idRuta:req.body.idRuta
+      })
+      res.send(camionruta)
+    } catch (error) {
       res.status(500).send({error: 'An error has ocurred'})
     }
   }
