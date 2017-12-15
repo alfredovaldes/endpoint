@@ -28,7 +28,9 @@
     "request-promise": "^4.2.2",
     "sequelize": "^4.20.1",
     "serve-favicon": "~2.4.2",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "vue": "^2.5.11",
+    "vuejs": "^2.0.19"
   },
   "engines": {
     "node": "8.6.0"
