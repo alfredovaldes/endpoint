@@ -18,7 +18,7 @@ module.exports = {
     async get(req,res){
         try{
         var pos;
-        rp('https://testfire-miag5.firebaseio.com/camiones/.json')
+        rp('https://testfire-miag5.firebaseio.com/camiones.json')
             .then(await function (body) {
                 var respuesta={};
                 var cuerpo = JSON.parse(body);
