@@ -53,7 +53,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
-//app.use(jwt({ secret: config.secret}).unless({path: ['/login','/adminlogin',{ url: '/', methods: ['POST']  }]}));
+app.use(jwt({ secret: config.secret}).unless({path: ['/login','/adminlogin',{ url: '/', methods: ['POST']  }]}));
 
 app.use('/', index);
 app.use('/user', user);
