@@ -4,7 +4,7 @@ const authcontroller = require('../controllers/authcontroller')
 const usercontroller = require('../controllers/usercontroller')
 
 router.route('/')
-  .get(usercontroller.index)
+  //.get(usercontroller.index)
 
   .post(usercontroller.post)
 
